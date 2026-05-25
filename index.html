@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skycast — Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <main class="container">
+    <header>
+      <div class="logo">☁ Skycast</div>
+      <div class="date-badge" id="currentDate"></div>
+    </header>
+
+    <section class="search-section">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="cityInput" placeholder="Search city..." autocomplete="off" />
+        <button id="searchBtn">Go</button>
+      </div>
+      <div class="quick-cities">
+        <span>Quick:</span>
+        <button class="city-tag" data-city="Jakarta">Jakarta</button>
+        <button class="city-tag" data-city="Tokyo">Tokyo</button>
+        <button class="city-tag" data-city="London">London</button>
+        <button class="city-tag" data-city="New York">New York</button>
+        <button class="city-tag" data-city="Sydney">Sydney</button>
+      </div>
+    </section>
+
+    <div id="errorMsg" class="error-msg hidden">City not found. Please try again.</div>
+
+    <section class="weather-main" id="weatherMain">
+      <div class="card main-card">
+        <div class="city-info">
+          <h1 id="cityName">—</h1>
+          <p id="countryName" class="country"></p>
+        </div>
+        <div class="temp-display">
+          <span id="tempValue" class="temp">—</span>
+          <span class="temp-unit">°C</span>
+        </div>
+        <div class="weather-icon-big" id="weatherIconBig">🌤</div>
+        <p id="weatherDesc" class="weather-desc">—</p>
+        <div class="feel-row">
+          <span>Feels like <strong id="feelsLike">—</strong>°C</span>
+          <span id="weatherCode" class="weather-badge">—</span>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="card stat-card">
+          <div class="stat-icon">💧</div>
+          <div class="stat-label">Humidity</div>
+          <div class="stat-value" id="humidity">—%</div>
+          <div class="stat-bar"><div class="stat-fill" id="humidityBar"></div></div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon">🌬</div>
+          <div class="stat-label">Wind</div>
+          <div class="stat-value" id="windSpeed">— km/h</div>
+          <div class="stat-sub" id="windDir">—</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon">👁</div>
+          <div class="stat-label">Visibility</div>
+          <div class="stat-value" id="visibility">— km</div>
+          <div class="stat-sub">Clear sight</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-label">Pressure</div>
+          <div class="stat-value" id="pressure">— hPa</div>
+          <div class="stat-sub" id="pressureTrend">—</div>
+        </div>
+      </div>
+
+      <div class="card forecast-card">
+        <h3 class="section-title">5-Day Forecast</h3>
+        <div class="forecast-row" id="forecastRow">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="card sun-card">
+        <h3 class="section-title">Sun & Moon</h3>
+        <div class="sun-track">
+          <div class="sun-item">
+            <span class="sun-icon">🌅</span>
+            <div>
+              <div class="sun-label">Sunrise</div>
+              <div class="sun-time" id="sunrise">—</div>
+            </div>
+          </div>
+          <div class="sun-arc" id="sunArc">
+            <div class="arc-fill" id="arcFill"></div>
+            <div class="sun-dot" id="sunDot">☀</div>
+          </div>
+          <div class="sun-item">
+            <span class="sun-icon">🌇</span>
+            <div>
+              <div class="sun-label">Sunset</div>
+              <div class="sun-time" id="sunset">—</div>
+            </div>
+          </div>
+        </div>
+        <div class="daylight-info">
+          <span>Day length: <strong id="daylightHours">—</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Fetching weather data…</p>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🌍</div>
+      <p>Search for a city to see the weather</p>
+    </div>
+
+    <footer>
+      <p>Data from <a href="https://open-meteo.com" target="_blank">Open-Meteo</a> · Built with ♥</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
